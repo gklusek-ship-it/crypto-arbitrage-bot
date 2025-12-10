@@ -1,0 +1,7 @@
+ccxt
+flask
+websockets
+python-dotenv
+pandas
+python-telegram-bot
+requests
