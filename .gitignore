@@ -4,46 +4,34 @@ __pycache__/
 *$py.class
 *.so
 .Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
 *.egg-info/
-.installed.cfg
+dist/
+build/
 *.egg
 
-# Virtual environments
+# Environment
 .env
 .venv
-env/
 venv/
 ENV/
-.pythonlibs/
+
+# Databases
+*.db
+
+# Logs
+*.log
 
 # IDE
 .idea/
 .vscode/
 *.swp
 *.swo
-*~
 
-# Logs
-*.log
-arbitrage_bot.log
-
-# OS
-.DS_Store
-Thumbs.db
+# Replit
+.upm/
+.cache/
+.pythonlibs/
+uv.lock
 
 # Project specific
-.uv/
-uv.lock
-pyproject.toml
+attached_assets/
