@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>Arbitrage Bot Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Arbitrage Bot Dashboard</h1>
+            <div class="status">
+                <span id="lastUpdate">Last update: --</span>
+                <span class="refresh-indicator" id="refreshIndicator"></span>
+            </div>
+        </header>
+
+        <section class="stats-grid" id="summary">
+            <div class="stat-card">
+                <h3>Total Trades</h3>
+                <p class="stat-value" id="totalTrades">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Total PnL</h3>
+                <p class="stat-value" id="totalPnl">$0.00</p>
+            </div>
+            <div class="stat-card">
+                <h3>Win Rate</h3>
+                <p class="stat-value" id="winRate">0%</p>
+            </div>
+            <div class="stat-card">
+                <h3>Avg PnL/Trade</h3>
+                <p class="stat-value" id="avgPnl">$0.00</p>
+            </div>
+            <div class="stat-card">
+                <h3>Best Trade</h3>
+                <p class="stat-value positive" id="bestTrade">$0.00</p>
+            </div>
+            <div class="stat-card">
+                <h3>Worst Trade</h3>
+                <p class="stat-value negative" id="worstTrade">$0.00</p>
+            </div>
+        </section>
+
+        <section class="chart-section">
+            <h2>Daily PnL (Last 14 Days)</h2>
+            <div class="chart-container">
+                <canvas id="dailyPnlChart"></canvas>
+            </div>
+        </section>
+
+        <section class="fees-section">
+            <h2>Exchange Fees</h2>
+            <div class="fees-grid" id="feesGrid">
+                <p class="loading">Loading fees...</p>
+            </div>
+        </section>
+
+        <section class="shadow-section">
+            <h2>Shadow Trading (Simulation)</h2>
+            <div class="shadow-stats-grid" id="shadowStats">
+                <div class="stat-card">
+                    <h3>Shadow Trades</h3>
+                    <p class="stat-value" id="shadowTrades">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Shadow PnL</h3>
+                    <p class="stat-value" id="shadowPnl">$0.00</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Shadow Win Rate</h3>
+                    <p class="stat-value" id="shadowWinRate">0%</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Avg Shadow PnL</h3>
+                    <p class="stat-value" id="shadowAvgPnl">$0.00</p>
+                </div>
+            </div>
+            <h3 class="shadow-trades-header">Recent Shadow Trades</h3>
+            <div class="table-container">
+                <table id="shadowTradesTable">
+                    <thead>
+                        <tr>
+                            <th>Timestamp</th>
+                            <th>Symbol</th>
+                            <th>Buy Exchange</th>
+                            <th>Sell Exchange</th>
+                            <th>Spread %</th>
+                            <th>Simulated PnL</th>
+                        </tr>
+                    </thead>
+                    <tbody id="shadowTradesBody">
+                        <tr>
+                            <td colspan="6" class="no-data">No shadow trades yet</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="params-section">
+            <h2>Bot Parameters</h2>
+            <p class="params-info">Adjust trading parameters below. Changes take effect within 30 seconds.</p>
+            <div class="params-status" id="paramsStatus"></div>
+            <div class="params-grid" id="paramsGrid">
+                <p class="loading">Loading parameters...</p>
+            </div>
+        </section>
+
+        <section class="trades-section">
+            <h2>Recent Trades</h2>
+            <div class="table-container">
+                <table id="tradesTable">
+                    <thead>
+                        <tr>
+                            <th>Timestamp</th>
+                            <th>Symbol</th>
+                            <th>Buy Exchange</th>
+                            <th>Sell Exchange</th>
+                            <th>Amount</th>
+                            <th>Net Spread %</th>
+                            <th>PnL (USD)</th>
+                            <th>Mode</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tradesBody">
+                        <tr>
+                            <td colspan="8" class="no-data">No trades yet</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <footer>
+            <p>Auto-refresh every 30 seconds | Crypto Arbitrage Bot</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+</body>
+</html>
